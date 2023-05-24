@@ -14,26 +14,27 @@ public class Main {
         ConsoleReader consoleReader = new ConsoleReader(new Scanner(System.in));
         NumberToStringConverter numberToStringConverter = new NumberToRubStringConverter();
 
-        while (true) {
-            try {
-                Integer number = consoleReader.readNumber();
+        try {
+            Integer number = consoleReader.readNumber();
 
-                if (number == 0) {
-                    exit(0);
-                }
-
-                String convertedNumToStr = numberToStringConverter.convertNumToStr(number);
-
-                System.out.println(convertedNumToStr);
-            } catch (IncorrectNumberException e) {
-                System.out.println(e.getMessage());
-            } catch (Exception e) {
-                if (e instanceof NegativeNumberException) {
-                    System.out.println(ExceptionCode.NEGATIVE_NUMBER_EXCEPTION);
-                } else {
-                    System.out.println(ExceptionCode.UNKNOWN_EXCEPTION);
-                }
+            if (number == 0) {
+                exit(0);
             }
+
+            String convertedNumToStr = numberToStringConverter.convertNumToStr(number);
+
+            System.out.println(convertedNumToStr);
+        } catch (IncorrectNumberException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            if (e instanceof NegativeNumberException) {
+                System.out.println(ExceptionCode.NEGATIVE_NUMBER_EXCEPTION);
+            } else {
+                System.out.println(ExceptionCode.UNKNOWN_EXCEPTION);
+            }
+        } finally {
+            System.out.println("закроем сканнер");
+            consoleReader.close();
         }
     }
 }

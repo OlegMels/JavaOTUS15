@@ -21,4 +21,8 @@ public class ConsoleReader {
             throw new IncorrectNumberException("Произошла ошибка при обработке числа");
         }
     }
+
+    public void close() {
+        scanner.close();
+    }
 }
