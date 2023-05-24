@@ -4,7 +4,7 @@ import otus.exception.IncorrectNumberException;
 
 import java.util.Scanner;
 
-public class ConsoleReader {
+public class ConsoleReader implements AutoCloseable{
     private final Scanner scanner;
 
     public ConsoleReader(Scanner scanner) {
@@ -20,5 +20,10 @@ public class ConsoleReader {
             scanner.next();
             throw new IncorrectNumberException("Произошла ошибка при обработке числа");
         }
+    }
+
+    @Override
+    public void close() throws Exception {
+        scanner.close();
     }
 }
